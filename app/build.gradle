@@ -62,6 +62,10 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
     implementation "com.github.bumptech.glide:glide:${versions.glide}"
 
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+
     implementation "androidx.core:core:${versions.core}"
     implementation "androidx.core:core-ktx:${versions.core}"
     implementation "androidx.fragment:fragment:${versions.fragment}"
@@ -78,6 +82,12 @@ dependencies {
     //region kapt dependencies
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    //endregion
+
+    //region debug dependencies
+    debugImplementation "com.facebook.stetho:stetho:${versions.stetho}"
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:${versions.stetho}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
     //endregion
 
     //region test dependencies
