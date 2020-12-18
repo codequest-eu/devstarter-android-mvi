@@ -7,7 +7,7 @@ ext {
             verName          : "0.1",
 
             //Android
-            minSdk           : 21,
+            minSdk           : 23,
             buildToolsVersion: "30.0.2",
             targetSdk        : 30,
             compileSdk       : 30
