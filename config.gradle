@@ -8,9 +8,9 @@ ext {
 
             //Android
             minSdk           : 21,
-            buildToolsVersion: "29.0.3",
-            targetSdk        : 29,
-            compileSdk       : 29
+            buildToolsVersion: "30.0.2",
+            targetSdk        : 30,
+            compileSdk       : 30
     ]
 
 
