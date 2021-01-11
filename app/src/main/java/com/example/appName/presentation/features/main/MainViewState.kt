@@ -10,5 +10,6 @@ data class MainViewState(
     sealed class PartialState {
         data class WelcomeState(val loggedOutName: String) : PartialState()
         data class LoggedInState(val loggedInName: String) : PartialState()
+        data class Dummy(val foo: String = "bar"): PartialState()
     }
 }

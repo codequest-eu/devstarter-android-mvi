@@ -17,6 +17,8 @@ class MainActivity : BaseActivity<MainViewState, MainPresenter>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        presenter.acceptIntent(MainIntent.Dummy)
+
         login_button.setOnClickListener { presenter.acceptIntent(MainIntent.Login) }
 
         logout_button.setOnClickListener { presenter.acceptIntent(MainIntent.Logout) }
