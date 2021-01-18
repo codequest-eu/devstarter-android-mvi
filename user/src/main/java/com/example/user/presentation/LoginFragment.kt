@@ -7,35 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.base.presentation.BaseFragment
-import com.example.base.presentation.MviObservableView
 import com.example.user.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>(),
-        MviObservableView.Listener<LoginIntent> {
+class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginIntent, LoginPresenter>() {
 
     override val presenter by viewModels<LoginPresenter>()
 
-    private lateinit var mviView: LoginMviView
+    private lateinit var loginView: LoginMviView
+    override val mviView get() = loginView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mviView = LoginMviView(inflater, container)
-        return mviView.rootView
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mviView.registerListener(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mviView.unregisterListener(this)
-    }
-
-    override fun render(viewState: LoginViewState) {
-        mviView.render(viewState)
+        loginView = LoginMviView(inflater, container)
+        return loginView.rootView
     }
 
     override fun handle(viewEvent: LoginViewEvent) {
@@ -43,9 +28,5 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
             is LoginViewEvent.LoginFailed -> Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show()
             is LoginViewEvent.Navigate -> navigation.navigate(viewEvent.destination)
         }
-    }
-
-    override fun onViewIntent(viewIntent: LoginIntent) {
-        presenter.acceptIntent(viewIntent)
     }
 }

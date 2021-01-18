@@ -1,5 +1,7 @@
 package com.example.base.presentation
 
+import android.content.Context
+
 abstract class MviObservableViewBase<VIEW_STATE, VIEW_INTENT> : MviObservableView<VIEW_STATE, VIEW_INTENT> {
     private val listeners = mutableSetOf<MviObservableView.Listener<VIEW_INTENT>>()
 
@@ -16,4 +18,6 @@ abstract class MviObservableViewBase<VIEW_STATE, VIEW_INTENT> : MviObservableVie
     override fun unregisterListener(listener: MviObservableView.Listener<VIEW_INTENT>) {
         listeners.remove(listener)
     }
+
+    protected val context: Context get() = rootView.context
 }

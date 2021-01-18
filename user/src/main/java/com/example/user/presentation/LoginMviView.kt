@@ -34,7 +34,7 @@ class LoginMviView(
     }
 
     private fun renderText(viewState: LoginViewState) {
-        mainText.text = rootView.context.getString(R.string.main_welcome_text, viewState.name)
+        mainText.text = context.getString(R.string.main_welcome_text, viewState.name)
     }
 
     private fun renderButtonsVisibility(viewState: LoginViewState) {
