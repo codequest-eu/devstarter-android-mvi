@@ -11,8 +11,6 @@
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/home_fragment"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"
             />
     </fragment>
 

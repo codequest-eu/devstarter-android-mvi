@@ -42,7 +42,7 @@ class LoginPresenter @ViewModelInject constructor(
             return Flowable.empty()
         }
 
-        if (loginCalls == 3) {
+        if (loginCalls % 3 == 0) {
             publishEvent(
                     LoginViewEvent.Navigate(
                             Direction.toHomeScreen(R.string.nice)
