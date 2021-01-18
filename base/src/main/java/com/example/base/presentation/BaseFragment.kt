@@ -1,10 +1,5 @@
 package com.example.base.presentation
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.example.base.nav.Navigation
 import com.example.base.utils.SchedulersFactory
@@ -13,17 +8,14 @@ import io.reactivex.rxjava3.kotlin.addTo
 import java.io.Serializable
 import javax.inject.Inject
 
-abstract class BaseFragment<VIEW_STATE : Serializable, VIEW_EVENT, PRESENTER : BasePresenter<VIEW_STATE, *, *, VIEW_EVENT>>(
-        @LayoutRes val layoutId: Int
-) : Fragment() {
+abstract class BaseFragment<VIEW_STATE : Serializable, VIEW_EVENT, PRESENTER : BasePresenter<VIEW_STATE, *, *, VIEW_EVENT>>
+    : Fragment() {
 
     abstract val presenter: PRESENTER
     @Inject protected lateinit var navigation: Navigation
 
     protected val compositeDisposable = CompositeDisposable()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(layoutId, null, false)
 
     override fun onStart() {
         super.onStart()

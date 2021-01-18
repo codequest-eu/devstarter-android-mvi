@@ -2,11 +2,6 @@ apply plugin: 'com.android.application'
 apply from: "$rootProject.projectDir/gradles/plugs.gradle"
 
 android {
-
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
         applicationId config.appId
         testApplicationId config.testAppId
@@ -18,6 +13,10 @@ android {
         versionName config.verName
 
         vectorDrawables.useSupportLibrary = true
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {

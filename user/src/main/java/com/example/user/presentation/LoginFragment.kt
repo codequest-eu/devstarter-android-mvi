@@ -1,23 +1,39 @@
 package com.example.user.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.base.presentation.BaseFragment
 import com.example.user.R
+import com.example.user.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_login.*
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>(R.layout.fragment_login) {
+class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>() {
 
     override val presenter by viewModels<LoginPresenter>()
 
+    private var binding: FragmentLoginBinding? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return FragmentLoginBinding.inflate(inflater, container, false).let {
+            binding = it
+            it.root
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        login_button.setOnClickListener { presenter.acceptIntent(LoginIntent.Login) }
-        logout_button.setOnClickListener { presenter.acceptIntent(LoginIntent.Logout) }
+        binding?.loginButton?.setOnClickListener { presenter.acceptIntent(LoginIntent.Login) }
+        binding?.logoutButton?.setOnClickListener { presenter.acceptIntent(LoginIntent.Logout) }
     }
 
     //region Render methods
@@ -27,16 +43,16 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
     }
 
     private fun renderText(viewState: LoginViewState) {
-        main_text.text = getString(R.string.main_welcome_text, viewState.name)
+        binding?.mainText?.text = getString(R.string.main_welcome_text, viewState.name)
     }
 
     private fun renderButtonsVisibility(viewState: LoginViewState) {
         if (viewState.isLoggedIn) {
-            login_button.visibility = View.GONE
-            logout_button.visibility = View.VISIBLE
+            binding?.loginButton?.visibility = View.GONE
+            binding?.logoutButton?.visibility = View.VISIBLE
         } else {
-            login_button.visibility = View.VISIBLE
-            logout_button.visibility = View.GONE
+            binding?.loginButton?.visibility = View.VISIBLE
+            binding?.logoutButton?.visibility = View.GONE
         }
     }
 
