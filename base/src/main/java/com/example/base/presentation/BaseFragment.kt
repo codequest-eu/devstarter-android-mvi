@@ -26,7 +26,7 @@ abstract class BaseFragment<
         presenter
                 .viewEvents
                 .observeOn(SchedulersFactory.main)
-                .subscribe(::handle)
+                .subscribe(::handleEvent)
                 .addTo(compositeDisposable)
 
         presenter
@@ -43,5 +43,5 @@ abstract class BaseFragment<
     }
 
     abstract fun render(viewState: VIEW_STATE)
-    abstract fun handle(viewEvent: VIEW_EVENT)
+    abstract fun handleEvent(viewEvent: VIEW_EVENT)
 }

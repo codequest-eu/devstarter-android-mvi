@@ -22,7 +22,7 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
         return loginView.rootView
     }
 
-    override fun handle(viewEvent: LoginViewEvent) {
+    override fun handleEvent(viewEvent: LoginViewEvent) {
         when (viewEvent) {
             is LoginViewEvent.LoginFailed -> Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show()
             is LoginViewEvent.Navigate -> navigation.navigate(viewEvent.destination)
