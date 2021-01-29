@@ -15,11 +15,18 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
 
     override val presenter by viewModels<LoginPresenter>()
 
-    private lateinit var loginView: LoginMviView
+    private var loginView: LoginMviView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        loginView = LoginMviView(inflater, container, presenter::acceptIntent)
-        return loginView.rootView
+        return LoginMviView(inflater, container, presenter::acceptIntent).let {
+            loginView = it
+            it.rootView
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        loginView = null
     }
 
     override fun handleEvent(viewEvent: LoginViewEvent) {
@@ -30,6 +37,6 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
     }
 
     override fun render(viewState: LoginViewState) {
-        loginView.render(viewState)
+        loginView?.render(viewState)
     }
 }
