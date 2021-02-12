@@ -3,10 +3,6 @@ apply from: "$rootProject.projectDir/gradles/plugs.gradle"
 
 android {
 
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
         applicationId config.appId
         testApplicationId config.testAppId
