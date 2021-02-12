@@ -3,7 +3,7 @@ package com.example.user.presentation.login
 import com.example.user.presentation.login.LoginConstants.LOGGED_OUT_NAME
 import java.io.Serializable
 
-data class LoginViewState(
+internal data class LoginViewState(
         val name: String = LOGGED_OUT_NAME,
         val isLoggedIn: Boolean = false
 ) : Serializable {

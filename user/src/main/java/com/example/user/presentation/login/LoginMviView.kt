@@ -7,7 +7,7 @@ import com.example.base.presentation.BaseMviView
 import com.example.user.R
 import com.example.user.databinding.FragmentLoginBinding
 
-class LoginMviView(
+internal class LoginMviView(
         layoutInflater: LayoutInflater,
         parent: ViewGroup?,
         override val acceptIntent: (LoginIntent) -> Unit

@@ -12,13 +12,13 @@ import com.example.user.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>() {
+internal class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>() {
 
     override val presenter by viewModels<LoginPresenter>()
 
     private var loginView: LoginMviView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return LoginMviView(inflater, container, presenter::acceptIntent).let {
             loginView = it
             it.rootView

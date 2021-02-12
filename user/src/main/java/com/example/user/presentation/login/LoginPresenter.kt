@@ -7,7 +7,7 @@ import com.example.user.presentation.login.LoginViewState.PartialState.LoggedInS
 import com.example.user.presentation.login.LoginViewState.PartialState.WelcomeState
 import io.reactivex.rxjava3.core.Flowable
 
-class LoginPresenter @ViewModelInject constructor(
+internal class LoginPresenter @ViewModelInject constructor(
         initialState: LoginViewState,
         private val exampleUserRepository: ExampleUserRepository
 ) : BasePresenter<LoginViewState, LoginViewState.PartialState, LoginIntent, LoginViewEvent>(initialState) {
