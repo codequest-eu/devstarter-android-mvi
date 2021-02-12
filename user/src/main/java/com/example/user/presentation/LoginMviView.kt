@@ -15,9 +15,9 @@ class LoginMviView(
 ) : BaseMviView<LoginViewState, LoginIntent>() {
     override val rootView = layoutInflater.inflate(R.layout.fragment_login, parent, false)
 
-    val mainText : TextView = rootView.findViewById(R.id.main_text)
-    val loginButton : Button = rootView.findViewById(R.id.login_button)
-    val logoutButton : Button = rootView.findViewById(R.id.logout_button)
+    val mainText: TextView = rootView.findViewById(R.id.mainText)
+    val loginButton: Button = rootView.findViewById(R.id.loginButton)
+    val logoutButton: Button = rootView.findViewById(R.id.logoutButton)
 
     init {
         loginButton.setOnClickListener {

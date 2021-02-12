@@ -16,7 +16,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<TextView>(R.id.home_text).text = arguments?.getString(TEXT_ARG)
+        view.findViewById<TextView>(R.id.homeText).text = arguments?.getString(TEXT_ARG)
     }
 
     companion object {

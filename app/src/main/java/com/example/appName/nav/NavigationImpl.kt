@@ -15,7 +15,7 @@ class NavigationImpl @Inject constructor(
 ) : Navigation {
 
     private val navController by lazy {
-        (context as MainActivity).findNavController(R.id.main_frame)
+        (context as MainActivity).findNavController(R.id.mainFrame)
     }
 
     override fun navigate(direction: Direction) {
