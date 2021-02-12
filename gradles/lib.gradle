@@ -26,6 +26,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 apply from: "$rootProject.projectDir/gradles/deps.gradle"
