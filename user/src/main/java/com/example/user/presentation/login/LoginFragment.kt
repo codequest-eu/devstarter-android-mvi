@@ -1,9 +1,10 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.base.presentation.BaseFragment
@@ -24,6 +25,14 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.go_to_destination).setOnClickListener {
+            navigation.navigate(LoginFragmentDirections.actionLoginFragmentToMockDestinationFragment())
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         loginView = null
@@ -32,7 +41,7 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
     override fun handleEvent(viewEvent: LoginViewEvent) {
         when (viewEvent) {
             is LoginViewEvent.LoginFailed -> Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show()
-            is LoginViewEvent.Navigate -> navigation.navigate(viewEvent.destination)
+            is LoginViewEvent.LoginSuccess -> navigation.navigate(LoginFragmentDirections.actionLoginToHome())
         }
     }
 

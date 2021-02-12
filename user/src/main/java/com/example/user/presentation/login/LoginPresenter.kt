@@ -1,12 +1,10 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 import androidx.hilt.lifecycle.ViewModelInject
-import com.example.base.nav.Direction
 import com.example.base.presentation.BasePresenter
-import com.example.user.R
 import com.example.user.data.ExampleUserRepository
-import com.example.user.presentation.LoginViewState.PartialState.LoggedInState
-import com.example.user.presentation.LoginViewState.PartialState.WelcomeState
+import com.example.user.presentation.login.LoginViewState.PartialState.LoggedInState
+import com.example.user.presentation.login.LoginViewState.PartialState.WelcomeState
 import io.reactivex.rxjava3.core.Flowable
 
 class LoginPresenter @ViewModelInject constructor(
@@ -43,11 +41,7 @@ class LoginPresenter @ViewModelInject constructor(
         }
 
         if (loginCalls % 3 == 0) {
-            publishEvent(
-                    LoginViewEvent.Navigate(
-                            Direction.toHomeScreen(R.string.nice)
-                    )
-            )
+            publishEvent(LoginViewEvent.LoginSuccess)
             return Flowable.empty()
         }
 

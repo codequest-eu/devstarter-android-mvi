@@ -17,6 +17,7 @@ buildscript {
         classpath "com.github.ben-manes:gradle-versions-plugin:0.21.0"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.3"
     }
 }
 

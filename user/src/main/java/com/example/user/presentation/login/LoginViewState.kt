@@ -1,6 +1,6 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
-import com.example.user.presentation.LoginConstants.LOGGED_OUT_NAME
+import com.example.user.presentation.login.LoginConstants.LOGGED_OUT_NAME
 import java.io.Serializable
 
 data class LoginViewState(
