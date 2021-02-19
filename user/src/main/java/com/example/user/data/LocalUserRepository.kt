@@ -1,13 +1,13 @@
 package com.example.user.data
 
 import com.example.base.utils.SchedulersFactory
-import com.example.user.model.ExampleUser
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class LocalExampleUserRepository : ExampleUserRepository {
-    override fun getUser(): Single<ExampleUser> {
+class LocalUserRepository @Inject constructor() : UserRepository {
+    override fun getUser(): Single<com.example.user.model.User> {
         return Single
-                .just(ExampleUser(LOCAL_USER_NAME))
+                .just(com.example.user.model.User(LOCAL_USER_NAME))
                 .subscribeOn(SchedulersFactory.io)
     }
 

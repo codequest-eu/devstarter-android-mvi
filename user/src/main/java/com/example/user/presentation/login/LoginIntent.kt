@@ -1,4 +1,4 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 sealed class LoginIntent {
     object Login : LoginIntent()

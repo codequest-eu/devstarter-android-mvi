@@ -3,19 +3,22 @@ package com.example.user.presentation
 import com.example.base.testutils.TestSchedulersFactory
 import com.example.base.utils.SchedulersFactory
 import com.example.user.BaseTest
-import com.example.user.data.ExampleUserRepository
-import com.example.user.model.ExampleUser
-import com.example.user.presentation.LoginConstants.LOGGED_OUT_NAME
+import com.example.user.data.UserRepository
+import com.example.user.model.User
+import com.example.user.presentation.login.LoginConstants.LOGGED_OUT_NAME
+import com.example.user.presentation.login.LoginIntent
+import com.example.user.presentation.login.LoginPresenter
+import com.example.user.presentation.login.LoginViewState
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
 
 class LoginPresenterTest : BaseTest() {
-    private val exampleUserRepository: ExampleUserRepository = object : ExampleUserRepository {
-        override fun getUser(): Single<ExampleUser> = Single.just(testUser)
+    private val userRepository: UserRepository = object : UserRepository {
+        override fun getUser(): Single<User> = Single.just(testUser)
     }
 
-    private val testUser = ExampleUser("John")
+    private val testUser = User("John")
 
     @Before
     fun setup() {
@@ -26,7 +29,7 @@ class LoginPresenterTest : BaseTest() {
     fun `given logged out state, when login emits value then state contains logged in status and proper user name`() {
         // given
         val initialState = getWelcomeViewState()
-        val mainPresenter = LoginPresenter(initialState, exampleUserRepository)
+        val mainPresenter = LoginPresenter(initialState, userRepository)
 
         // when
         val testObserver = mainPresenter.viewState.test()
@@ -43,7 +46,7 @@ class LoginPresenterTest : BaseTest() {
     fun `given logged in state, when logout emits value then new state contains logged out status and default text`() {
         // given
         val initialState = getLoggedViewState(testUser.name)
-        val mainPresenter = LoginPresenter(initialState, exampleUserRepository)
+        val mainPresenter = LoginPresenter(initialState, userRepository)
 
         // when
         val testObserver = mainPresenter.viewState.test()

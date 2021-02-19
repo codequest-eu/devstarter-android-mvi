@@ -1,6 +1,5 @@
-package com.example.user.di
+package com.example.user.presentation.register
 
-import com.example.user.presentation.login.LoginViewState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,8 +7,7 @@ import dagger.hilt.android.components.ActivityComponent
 
 @Module
 @InstallIn(ActivityComponent::class)
-class LoginModule {
-
+class RegisterModule() {
     @Provides
-    fun provideInitialLoginViewState(): LoginViewState = LoginViewState()
+    fun provideInitialRegisterViewState(): RegisterViewState = RegisterViewState()
 }

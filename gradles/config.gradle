@@ -31,6 +31,7 @@ ext {
             multidex     : '2.0.1',
             navigation   : '2.3.0',
             retrofit     : '2.9.0',
+            logIntercept : '4.9.0',
             rxAndroid    : '3.0.0',
             rxBinding    : '4.0.0',
             rxJava       : '3.0.4',
@@ -38,6 +39,7 @@ ext {
             rxExt        : '3.0.1',
             vector       : '1.1.0',
             viewPager2   : '1.0.0',
+            moshi        : '1.11.0',
 
             // Debug
             detekt       : '1.7.0',

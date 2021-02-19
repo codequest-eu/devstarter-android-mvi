@@ -1,4 +1,4 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 import android.os.Bundle
 import android.view.LayoutInflater

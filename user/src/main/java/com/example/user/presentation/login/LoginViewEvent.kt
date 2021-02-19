@@ -1,4 +1,4 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 import com.example.base.nav.Direction
 
