@@ -14,17 +14,24 @@ class {{pascalCase name}}Fragment : BaseFragment<{{pascalCase name}}ViewState, {
 
     override val presenter by viewModels<{{pascalCase name}}Presenter>()
 
-    private lateinit var {{camelCase name}}View: {{pascalCase name}}MviView
+    private var {{camelCase name}}View: {{pascalCase name}}MviView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        {{camelCase name}}View = {{pascalCase name}}MviView(inflater, container, presenter::acceptIntent)
-        return {{camelCase name}}View.rootView
+        return {{pascalCase name}}MviView(inflater, container, presenter::acceptIntent).let {
+            {{camelCase name}}View = it
+            it.rootView
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        {{camelCase name}}View = null
     }
 
     override fun handleEvent(viewEvent: {{pascalCase name}}ViewEvent) {
     }
 
     override fun render(viewState: {{pascalCase name}}ViewState) {
-        {{camelCase name}}View.render(viewState)
+        {{camelCase name}}View?.render(viewState)
     }
 }
