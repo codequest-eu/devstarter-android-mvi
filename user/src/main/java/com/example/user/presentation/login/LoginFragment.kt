@@ -29,7 +29,7 @@ internal class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, Logi
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.go_to_destination).setOnClickListener {
-            navigation.navigate(LoginFragmentDirections.actionLoginFragmentToMockDestinationFragment())
+            navigation.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
     }
 

@@ -13,12 +13,12 @@
             android:id="@+id/action_login_to_home"
             app:destination="@+id/home_fragment" />
         <action
-            android:id="@+id/action_login_fragment_to_mock_destination_fragment"
-            app:destination="@id/mock_destination_fragment" />
+            android:id="@+id/action_login_fragment_to_register_fragment"
+            app:destination="@id/register_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/mock_destination_fragment"
+        android:id="@+id/register_fragment"
         android:name="com.example.user.presentation.register.RegisterFragment"
         tools:layout="@layout/fragment_register" />
 
