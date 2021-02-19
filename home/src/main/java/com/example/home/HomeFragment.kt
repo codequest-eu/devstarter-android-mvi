@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.home.databinding.FragmentHomeBinding
 
-//Intentionally does not derive from BaseFragment
-//Sole role of HomeFragment is ATM being a target destination
+// Intentionally does not derive from BaseFragment
+// Sole role of HomeFragment is ATM being a target destination
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return _binding?.root
     }

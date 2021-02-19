@@ -10,7 +10,7 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
 class NavigationImpl @Inject constructor(
-        @ActivityContext val context: Context
+    @ActivityContext val context: Context
 ) : Navigation {
 
     private val navController by lazy {

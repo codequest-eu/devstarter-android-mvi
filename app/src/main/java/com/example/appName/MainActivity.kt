@@ -18,13 +18,13 @@ class MainActivity : AppCompatActivity() {
     val navController by lazy { findNavController(R.id.main_frame) }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
-            when (item.itemId) {
-                android.R.id.home -> {
-                    onBackPressed()
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         if (!BuildConfig.DEBUG) {
             window.setFlags(
-                    WindowManager.LayoutParams.FLAG_SECURE,
-                    WindowManager.LayoutParams.FLAG_SECURE
+                WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE
             )
         }
     }
-
 }

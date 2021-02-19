@@ -18,6 +18,7 @@ buildscript {
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.3"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
     }
 }
 
@@ -28,6 +29,7 @@ allprojects {
     }
 
     apply from: "$rootDir/detekt.gradle"
+    apply from: "$rootDir/ktlint.gradle"
 }
 
 task clean(type: Delete) {

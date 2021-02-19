@@ -9,18 +9,18 @@ import androidx.fragment.app.Fragment
 class EntryPointFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = null
 
     override fun onStart() {
         super.onStart()
 
         (requireActivity() as MainActivity)
-                .navController
-                .navigate(
-                        EntryPointFragmentDirections.actionEntryPointFragmentToUserNavGraph()
-                )
+            .navController
+            .navigate(
+                EntryPointFragmentDirections.actionEntryPointFragmentToUserNavGraph()
+            )
     }
 }

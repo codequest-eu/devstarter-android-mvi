@@ -7,8 +7,8 @@ import io.reactivex.rxjava3.core.Single
 class LocalExampleUserRepository : ExampleUserRepository {
     override fun getUser(): Single<ExampleUser> {
         return Single
-                .just(ExampleUser(LOCAL_USER_NAME))
-                .subscribeOn(SchedulersFactory.io)
+            .just(ExampleUser(LOCAL_USER_NAME))
+            .subscribeOn(SchedulersFactory.io)
     }
 
     companion object {

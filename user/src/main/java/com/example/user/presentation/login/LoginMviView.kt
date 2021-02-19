@@ -8,9 +8,9 @@ import com.example.user.R
 import com.example.user.databinding.FragmentLoginBinding
 
 internal class LoginMviView(
-        layoutInflater: LayoutInflater,
-        parent: ViewGroup?,
-        override val acceptIntent: (LoginIntent) -> Unit
+    layoutInflater: LayoutInflater,
+    parent: ViewGroup?,
+    override val acceptIntent: (LoginIntent) -> Unit
 ) : BaseMviView<LoginViewState, LoginIntent>() {
     private val binding = FragmentLoginBinding.inflate(layoutInflater, parent, false)
     override val rootView = binding.root

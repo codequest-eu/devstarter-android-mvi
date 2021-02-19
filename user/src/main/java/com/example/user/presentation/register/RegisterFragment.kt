@@ -17,6 +17,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.destination_go_back_button)
-                .setOnClickListener { navigation.navigateBack() }
+            .setOnClickListener { navigation.navigateBack() }
     }
 }
