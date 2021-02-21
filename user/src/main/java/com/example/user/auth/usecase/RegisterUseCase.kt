@@ -22,7 +22,9 @@ internal class RegisterUseCaseImpl @Inject constructor(
         return sessionApi
                 .register(RegisterReq.make(username, password))
                 .subscribeOn(SchedulersFactory.io)
-                .toSingleDefault(RegisterUseCase.Result.Success as RegisterUseCase.Result)
+                .map {
+                    RegisterUseCase.Result.Success as RegisterUseCase.Result
+                }
                 .onErrorReturn {
                     RegisterUseCase.Result.Failure
                 }
