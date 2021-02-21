@@ -2,8 +2,6 @@ package com.example.base.lib
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.Module
@@ -23,22 +21,14 @@ class PreferencesModule {
     @Singleton
     @Named(ENCRYPTED_PREFERENCES_NAME)
     fun provideEncryptedPreferences(@ApplicationContext context: Context): SharedPreferences {
-        val keySpec = KeyGenParameterSpec
-                .Builder(MasterKey.DEFAULT_MASTER_KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT and KeyProperties.PURPOSE_DECRYPT)
-                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                .setKeySize(MasterKey.DEFAULT_AES_GCM_MASTER_KEY_SIZE)
-                .build()
-
-        val masterKeyAlias = MasterKey
-                .Builder(context)
-                .setKeyGenParameterSpec(keySpec)
+        val mainKey = MasterKey.Builder(context)
+                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                 .build()
 
         return EncryptedSharedPreferences.create(
                 context,
-                "crypto",
-                masterKeyAlias,
+                CRYPTO_FILENAME,
+                mainKey,
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
@@ -46,6 +36,7 @@ class PreferencesModule {
 
     companion object {
         const val ENCRYPTED_PREFERENCES_NAME = "ENCRYPTED_PREFERENCES_NAME"
-        const val BASIC_PREFERENCES_NAME = "BASIC_PREFERENCES_NAME"
+
+        private const val CRYPTO_FILENAME = "crypto"
     }
 }

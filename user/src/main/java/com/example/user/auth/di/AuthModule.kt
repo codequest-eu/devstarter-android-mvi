@@ -103,4 +103,6 @@ internal class AuthModule {
 
     @Provides
     fun provideRegisterUseCase(impl: RegisterUseCaseImpl): RegisterUseCase = impl
+
+    
 }

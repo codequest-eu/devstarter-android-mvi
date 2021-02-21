@@ -9,12 +9,12 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 internal interface SessionApi {
-    @POST("loginUrl")
+    @POST("TODO")
     fun login(username: String, password: String): Single<Tokens>
 
     @POST("auth/accounts")
     fun register(@Body registerReq: RegisterReq): Single<RegisterResp>
 
-    @POST("forgotPasswordUrl")
+    @POST("TODO")
     fun forgotPassword(username: String): Completable
 }
