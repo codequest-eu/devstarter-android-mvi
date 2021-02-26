@@ -20,57 +20,56 @@ class BasePresenterTest {
     // VIEW_STATE tests
     @Test
     fun `given state exists, reduceViewState is given valid partialState, produces valid output`() {
-        //given
+        // given
         val to = UT.viewState.test()
 
-        //when
+        // when
         UT.acceptIntent(TestIntent.Add(5))
-        //then
+        // then
         to.assertValueAt(1) {
             it.count == 5
         }
 
-        //when
+        // when
         UT.acceptIntent(TestIntent.Sub(2))
-        //then
+        // then
         to.assertValueAt(2) {
             it.count == 3
         }
     }
 
-
     // VIEW_EVENT tests
     @Test
     fun `when event is published, subscriber is notified`() {
-        //given
+        // given
         val to = UT.viewEvents.test()
 
-        //when
+        // when
         UT.publishTestEvent(TestEvent("one"))
 
-        //then
+        // then
         to.assertValueCount(1)
     }
 
     @Test
     fun `given events emitted before subscribe, subscriber is notified`() {
-        //given: noop
+        // given: noop
 
-        //when
+        // when
         UT.publishTestEvent(TestEvent("one"))
         UT.publishTestEvent(TestEvent("two"))
         val to = UT.viewEvents.test()
 
-        //then
+        // then
         to.assertValueCount(2)
     }
 
     @Test
     fun `given subscribe-dispose-emit-subscribe scenario, subscriber receives missing events`() {
-        //given
+        // given
         val to = UT.viewEvents.test()
 
-        //when
+        // when
         UT.publishTestEvent(TestEvent("one"))
         UT.publishTestEvent(TestEvent("two"))
         to.assertValueCount(2)
@@ -82,36 +81,37 @@ class BasePresenterTest {
 
         val to2 = UT.viewEvents.test()
 
-        //then
+        // then
         to2.assertValueCount(3)
     }
-
 }
 
 data class TestViewState(val count: Int) : Serializable
 sealed class TestIntent {
-    data class Add(val count: Int): TestIntent()
-    data class Sub(val count: Int): TestIntent()
+    data class Add(val count: Int) : TestIntent()
+    data class Sub(val count: Int) : TestIntent()
 }
+
 sealed class TestPartialState {
-    data class Add(val count: Int): TestPartialState()
-    data class Sub(val count: Int): TestPartialState()
+    data class Add(val count: Int) : TestPartialState()
+    data class Sub(val count: Int) : TestPartialState()
 }
+
 data class TestEvent(val what: String)
 
 class TestPresenter : BasePresenter<TestViewState, TestPartialState, TestIntent, TestEvent>(TestViewState(0)) {
     override fun provideViewIntents(): Flowable<TestPartialState> {
         return intentProcessor
-                .map {
-                    when(it) {
-                        is TestIntent.Add -> TestPartialState.Add(it.count)
-                        is TestIntent.Sub -> TestPartialState.Sub(it.count)
-                    }
+            .map {
+                when (it) {
+                    is TestIntent.Add -> TestPartialState.Add(it.count)
+                    is TestIntent.Sub -> TestPartialState.Sub(it.count)
                 }
+            }
     }
 
     override fun reduceViewState(previousState: TestViewState, partialState: TestPartialState): TestViewState {
-        return when(partialState) {
+        return when (partialState) {
             is TestPartialState.Add -> TestViewState(previousState.count + partialState.count)
             is TestPartialState.Sub -> TestViewState(previousState.count - partialState.count)
         }

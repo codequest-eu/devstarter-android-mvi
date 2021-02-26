@@ -5,7 +5,10 @@ import com.example.base.utils.SchedulersFactory
 import com.example.user.BaseTest
 import com.example.user.data.ExampleUserRepository
 import com.example.user.model.ExampleUser
-import com.example.user.presentation.LoginConstants.LOGGED_OUT_NAME
+import com.example.user.presentation.login.LoginConstants.LOGGED_OUT_NAME
+import com.example.user.presentation.login.LoginIntent
+import com.example.user.presentation.login.LoginPresenter
+import com.example.user.presentation.login.LoginViewState
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
@@ -34,8 +37,8 @@ class LoginPresenterTest : BaseTest() {
 
         // then
         testObserver.assertValues(
-                getWelcomeViewState(),
-                getLoggedViewState(testUser.name)
+            getWelcomeViewState(),
+            getLoggedViewState(testUser.name)
         )
     }
 
@@ -51,8 +54,8 @@ class LoginPresenterTest : BaseTest() {
 
         // then
         testObserver.assertValues(
-                getLoggedViewState(testUser.name),
-                getWelcomeViewState()
+            getLoggedViewState(testUser.name),
+            getWelcomeViewState()
         )
     }
 

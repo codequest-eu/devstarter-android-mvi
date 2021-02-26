@@ -1,4 +1,4 @@
-package com.example.user.presentation
+package com.example.user.presentation.login
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import com.example.base.presentation.BaseMviView
 import com.example.user.R
 import com.example.user.databinding.FragmentLoginBinding
 
-class LoginMviView(
-        layoutInflater: LayoutInflater,
-        parent: ViewGroup?,
-        override val acceptIntent: (LoginIntent) -> Unit
+internal class LoginMviView(
+    layoutInflater: LayoutInflater,
+    parent: ViewGroup?,
+    override val acceptIntent: (LoginIntent) -> Unit
 ) : BaseMviView<LoginViewState, LoginIntent>() {
     private val binding = FragmentLoginBinding.inflate(layoutInflater, parent, false)
     override val rootView = binding.root

@@ -38,6 +38,7 @@ android {
 
 apply from: "$rootProject.projectDir/gradles/deps.gradle"
 apply from: "$rootProject.projectDir/gradles/deps-test.gradle"
+apply plugin: 'kotlin-android'
 
 dependencies {
     implementation project(path: ':base')
