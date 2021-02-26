@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.io.Serializable
 
 abstract class BasePresenter<VIEW_STATE : Serializable, PARTIAL_VIEW_STATE, INTENT, VIEW_EVENT>(
-        initialState: VIEW_STATE
+    initialState: VIEW_STATE
 ) : ViewModel() {
     protected val intentProcessor: FlowableProcessor<INTENT> = PublishProcessor.create()
 
@@ -43,11 +43,11 @@ abstract class BasePresenter<VIEW_STATE : Serializable, PARTIAL_VIEW_STATE, INTE
     }
 
     private fun subscribeToViewIntents(initialState: VIEW_STATE, flowables: Flowable<PARTIAL_VIEW_STATE>) =
-            flowables
-                    .observeOn(reduceScheduler)
-                    .scan(initialState, this::reduceViewState)
-                    .observeOn(SchedulersFactory.main)
-                    .subscribe({ viewStateSubject.onNext(it) }, { it.printStackTrace() })
+        flowables
+            .observeOn(reduceScheduler)
+            .scan(initialState, this::reduceViewState)
+            .observeOn(SchedulersFactory.main)
+            .subscribe({ viewStateSubject.onNext(it) }, { it.printStackTrace() })
 
     protected abstract fun provideViewIntents(): Flowable<PARTIAL_VIEW_STATE>
 

@@ -21,8 +21,15 @@ class RegisterPresenter @ViewModelInject constructor(
                 .flatMap {
                     when (it) {
                         is RegisterIntent.Register -> triggerRegister(it)
+                        is RegisterIntent.GoBack -> handleGoBack()
                     }
                 }
+    }
+
+    private fun handleGoBack(): Flowable<RegisterViewState.PartialState> {
+        publishEvent(RegisterViewEvent.GoBack)
+
+        return Flowable.empty()
     }
 
     private fun triggerRegister(it: RegisterIntent.Register): Flowable<RegisterViewState.PartialState> {

@@ -2,24 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/register_fragment">
+    app:startDestination="@+id/entry_point_fragment">
 
     <fragment
-        android:id="@+id/login_fragment"
-        android:name="com.example.user.presentation.login.LoginFragment"
-        >
+        android:id="@+id/entry_point_fragment"
+        android:name="com.example.appName.EntryPointFragment">
         <action
-            android:id="@+id/action_login_to_home"
-            app:destination="@id/home_fragment"
-            />
+            android:id="@+id/action_entry_point_fragment_to_user_nav_graph"
+            app:destination="@id/user_nav_graph" />
     </fragment>
 
     <fragment
-        android:id="@+id/register_fragment"
-        android:name="com.example.user.presentation.register2.RegisterFragment"
-        />
-
-    <fragment
         android:id="@+id/home_fragment"
-        android:name="com.example.home.HomeFragment"/>
+        android:name="com.example.home.HomeFragment" />
+
+    <include app:graph="@navigation/user_nav_graph" />
+
 </navigation>

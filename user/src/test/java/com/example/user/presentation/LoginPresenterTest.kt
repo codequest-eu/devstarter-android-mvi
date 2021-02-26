@@ -37,8 +37,8 @@ class LoginPresenterTest : BaseTest() {
 
         // then
         testObserver.assertValues(
-                getWelcomeViewState(),
-                getLoggedViewState(testUser.name)
+            getWelcomeViewState(),
+            getLoggedViewState(testUser.name)
         )
     }
 
@@ -54,8 +54,8 @@ class LoginPresenterTest : BaseTest() {
 
         // then
         testObserver.assertValues(
-                getLoggedViewState(testUser.name),
-                getWelcomeViewState()
+            getLoggedViewState(testUser.name),
+            getWelcomeViewState()
         )
     }
 

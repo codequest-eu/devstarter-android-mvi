@@ -9,7 +9,7 @@ import com.example.base.presentation.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterFragment : BaseFragment<RegisterViewState, RegisterViewEvent, RegisterPresenter>() {
+class RegisterFragment2 : BaseFragment<RegisterViewState, RegisterViewEvent, RegisterPresenter>() {
 
     override val presenter by viewModels<RegisterPresenter>()
 
@@ -21,6 +21,9 @@ class RegisterFragment : BaseFragment<RegisterViewState, RegisterViewEvent, Regi
     }
 
     override fun handleEvent(viewEvent: RegisterViewEvent) {
+        when(viewEvent) {
+            is RegisterViewEvent.GoBack -> navigation.navigateBack()
+        }
     }
 
     override fun render(viewState: RegisterViewState) {

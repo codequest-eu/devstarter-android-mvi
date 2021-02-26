@@ -5,4 +5,6 @@ sealed class RegisterIntent() {
             val username: String,
             val password: String
     ) : RegisterIntent()
+
+    object GoBack: RegisterIntent()
 }

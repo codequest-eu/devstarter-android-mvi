@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="action_logout">Logout</string>
+    <string name="go_back">Go back</string>
     <string name="register">Register</string>
+    <string name="action_login">Login</string>
+    <string name="main_welcome_text">Welcome %s!</string>
+    <string name="login_failed">Login failed!</string>
+    <string name="nice">Nice..</string>
 </resources>

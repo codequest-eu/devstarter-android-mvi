@@ -1,17 +1,15 @@
 package com.example.user.presentation.login
 
 import androidx.hilt.lifecycle.ViewModelInject
-import com.example.base.nav.Direction
 import com.example.base.presentation.BasePresenter
-import com.example.user.R
 import com.example.user.data.UserRepository
 import com.example.user.presentation.login.LoginViewState.PartialState.LoggedInState
 import com.example.user.presentation.login.LoginViewState.PartialState.WelcomeState
 import io.reactivex.rxjava3.core.Flowable
 
-class LoginPresenter @ViewModelInject constructor(
+internal class LoginPresenter @ViewModelInject constructor(
         initialState: LoginViewState,
-        private val userRepository: UserRepository
+        private val exampleUserRepository: UserRepository
 ) : BasePresenter<LoginViewState, LoginViewState.PartialState, LoginIntent, LoginViewEvent>(initialState) {
 
     override fun reduceViewState(previousState: LoginViewState, partialState: LoginViewState.PartialState): LoginViewState =
@@ -43,18 +41,13 @@ class LoginPresenter @ViewModelInject constructor(
         }
 
         if (loginCalls % 3 == 0) {
-            publishEvent(
-                    LoginViewEvent.Navigate(
-                            Direction.toHomeScreen(R.string.nice)
-                    )
-            )
+            publishEvent(LoginViewEvent.LoginSuccess)
             return Flowable.empty()
         }
 
-        return userRepository
+        return exampleUserRepository
                 .getUser()
                 .map { LoggedInState(it.name) }
                 .toFlowable()
     }
-
 }

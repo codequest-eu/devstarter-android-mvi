@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.base.presentation.BaseFragment
@@ -11,16 +12,24 @@ import com.example.user.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>() {
+internal class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresenter>() {
 
     override val presenter by viewModels<LoginPresenter>()
 
     private var loginView: LoginMviView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return LoginMviView(inflater, container, presenter::acceptIntent).let {
             loginView = it
             it.rootView
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.go_to_destination).setOnClickListener {
+            navigation.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
     }
 
@@ -32,7 +41,7 @@ class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, LoginPresente
     override fun handleEvent(viewEvent: LoginViewEvent) {
         when (viewEvent) {
             is LoginViewEvent.LoginFailed -> Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show()
-            is LoginViewEvent.Navigate -> navigation.navigate(viewEvent.destination)
+            is LoginViewEvent.LoginSuccess -> navigation.navigate(LoginFragmentDirections.actionLoginToHome())
         }
     }
 

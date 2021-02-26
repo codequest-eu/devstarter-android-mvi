@@ -22,8 +22,7 @@ interface SchedulersFactory {
                 get() = Schedulers.newThread()
         }
 
-
-        //for test purposes
+        // for test purposes
         fun set(factory: SchedulersFactory) {
             instance = factory
         }

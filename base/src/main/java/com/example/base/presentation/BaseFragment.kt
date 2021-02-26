@@ -9,10 +9,10 @@ import java.io.Serializable
 import javax.inject.Inject
 
 abstract class BaseFragment<
-        VIEW_STATE : Serializable,
-        VIEW_EVENT,
-        PRESENTER : BasePresenter<VIEW_STATE, *, *, VIEW_EVENT>>()
-    : Fragment() {
+    VIEW_STATE : Serializable,
+    VIEW_EVENT,
+    PRESENTER : BasePresenter<VIEW_STATE, *, *, VIEW_EVENT>>() :
+    Fragment() {
 
     abstract val presenter: PRESENTER
 
@@ -24,17 +24,17 @@ abstract class BaseFragment<
         super.onStart()
 
         presenter
-                .viewEvents
-                .observeOn(SchedulersFactory.main)
-                .subscribe(::handleEvent)
-                .addTo(compositeDisposable)
+            .viewEvents
+            .observeOn(SchedulersFactory.main)
+            .subscribe(::handleEvent)
+            .addTo(compositeDisposable)
 
         presenter
-                .viewState
-                .distinctUntilChanged()
-                .observeOn(SchedulersFactory.main)
-                .subscribe(::render)
-                .addTo(compositeDisposable)
+            .viewState
+            .distinctUntilChanged()
+            .observeOn(SchedulersFactory.main)
+            .subscribe(::render)
+            .addTo(compositeDisposable)
     }
 
     override fun onStop() {
