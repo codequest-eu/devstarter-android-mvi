@@ -1,4 +1,4 @@
-package com.example.user.presentation.register
+package com.example.user.presentation.register2
 
 import androidx.hilt.lifecycle.ViewModelInject
 import com.example.base.presentation.BasePresenter

@@ -1,4 +1,4 @@
-package com.example.user.presentation.register
+package com.example.user.presentation.register2
 
 sealed class RegisterIntent() {
     data class Register(

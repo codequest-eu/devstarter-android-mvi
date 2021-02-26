@@ -1,4 +1,4 @@
-package com.example.user.presentation.register
+package com.example.user.presentation.register2
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
