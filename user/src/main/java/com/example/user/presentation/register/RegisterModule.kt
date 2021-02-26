@@ -1,4 +1,4 @@
-package com.example.user.presentation.register2
+package com.example.user.presentation.register
 
 import dagger.Module
 import dagger.Provides

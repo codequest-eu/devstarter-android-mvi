@@ -1,4 +1,4 @@
-package com.example.user.presentation.register2
+package com.example.user.presentation.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.example.base.presentation.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterFragment2 : BaseFragment<RegisterViewState, RegisterViewEvent, RegisterPresenter>() {
+class RegisterFragment : BaseFragment<RegisterViewState, RegisterViewEvent, RegisterPresenter>() {
 
     override val presenter by viewModels<RegisterPresenter>()
 

@@ -12,6 +12,7 @@ import com.example.home.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,7 +23,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.homeText.text = arguments?.getString(TEXT_ARG)
+        binding.homeText.text = arguments?.getString("helloText")
     }
 
     override fun onDestroyView() {

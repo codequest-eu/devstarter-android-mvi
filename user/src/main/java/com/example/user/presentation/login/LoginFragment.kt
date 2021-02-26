@@ -41,7 +41,7 @@ internal class LoginFragment : BaseFragment<LoginViewState, LoginViewEvent, Logi
     override fun handleEvent(viewEvent: LoginViewEvent) {
         when (viewEvent) {
             is LoginViewEvent.LoginFailed -> Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show()
-            is LoginViewEvent.LoginSuccess -> navigation.navigate(LoginFragmentDirections.actionLoginToHome())
+            is LoginViewEvent.LoginSuccess -> navigation.navigate(LoginFragmentDirections.actionLoginToHome("hi!"))
         }
     }
 
