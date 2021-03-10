@@ -1,4 +1,4 @@
-package com.example.base.network
+package com.example.base.network.model
 
 import com.squareup.moshi.JsonClass
 

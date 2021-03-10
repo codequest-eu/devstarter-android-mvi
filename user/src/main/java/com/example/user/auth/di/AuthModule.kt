@@ -2,10 +2,9 @@ package com.example.user.auth.di
 
 import android.content.SharedPreferences
 import com.example.base.lib.PreferencesModule
+import com.example.base.network.BaseRetrofitFactory
 import com.example.base.network.NetworkModule
 import com.example.user.auth.Consts
-import com.example.user.auth.Consts.AUTH_INTERCEPTOR_NAME
-import com.example.user.auth.Consts.AUTH_OKHTTP_CLIENT
 import com.example.user.auth.data.*
 import com.example.user.auth.usecase.LoginUseCaseImpl
 import com.example.user.auth.usecase.LoginUserCase
@@ -17,12 +16,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Authenticator
 import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -32,15 +26,10 @@ internal class AuthModule {
     fun provideAuthenticator(impl: UserAuthenticator): Authenticator = impl
 
     @Provides
-    fun authApi(
-            @Named(AUTH_OKHTTP_CLIENT) okHttpClient: OkHttpClient
+    fun provideRefreshTokenApi(
+            factory: AuthRetrofitFactory
     ): RefreshTokenApi {
-        return Retrofit
-                .Builder()
-                .client(okHttpClient)
-                .baseUrl(NetworkModule.BACKEND_URL)
-                .build()
-                .create(RefreshTokenApi::class.java)
+        return factory.create(NetworkModule.BACKEND_URL, RefreshTokenApi::class.java)
     }
 
     @Provides
@@ -70,32 +59,25 @@ internal class AuthModule {
     }
 
     @Provides
-    @Singleton
-    @Named(AUTH_OKHTTP_CLIENT)
     fun authOkHttpClient(
             @Named(AUTH_INTERCEPTOR_NAME) authInterceptor: Interceptor,
-            @Named(NetworkModule.BASE_OKHTTPCLIENT_NAME) baseClient: OkHttpClient,
-            authenticator: Authenticator
-    ): OkHttpClient {
-        return baseClient.newBuilder().apply {
+            authenticator: Authenticator,
+            baseRetrofitFactory: BaseRetrofitFactory
+    ): AuthRetrofitFactory {
+        val retrofitFactory = baseRetrofitFactory.buildUpon {
             addNetworkInterceptor(authInterceptor)
             authenticator(authenticator)
         }
-                .build()
+
+        return AuthRetrofitFactory(retrofitFactory)
     }
 
     @Provides
     fun provideSessionApi(
-            @Named(NetworkModule.BASE_OKHTTPCLIENT_NAME) okHttpClient: OkHttpClient
+            factory: BaseRetrofitFactory
     ): SessionApi {
-        return Retrofit
-                .Builder()
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .baseUrl(NetworkModule.BACKEND_URL)
-                .build()
-                .create(SessionApi::class.java)
+        return factory
+                .create(NetworkModule.BACKEND_URL, SessionApi::class.java)
     }
 
     @Provides
@@ -104,5 +86,7 @@ internal class AuthModule {
     @Provides
     fun provideRegisterUseCase(impl: RegisterUseCaseImpl): RegisterUseCase = impl
 
-    
+    companion object {
+        private const val AUTH_INTERCEPTOR_NAME = "AUTH_INTERCEPTOR_NAME"
+    }
 }

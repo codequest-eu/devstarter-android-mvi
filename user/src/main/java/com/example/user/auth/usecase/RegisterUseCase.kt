@@ -3,7 +3,7 @@ package com.example.user.auth.usecase
 import com.example.base.utils.SchedulersFactory
 import com.example.user.auth.data.AuthRepository
 import com.example.user.auth.data.SessionApi
-import com.example.user.auth.model.register.RegisterReq
+import com.example.user.auth.model.register.RegisterRequest
 import com.example.user.auth.model.register.toTokens
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
@@ -23,13 +23,11 @@ internal class RegisterUseCaseImpl @Inject constructor(
 ) : RegisterUseCase {
     override fun execute(username: String, password: String): Single<RegisterUseCase.Result> {
         return sessionApi
-                .register(RegisterReq.make(username, password))
+                .register(RegisterRequest.make(username, password))
                 .subscribeOn(SchedulersFactory.io)
                 .doOnSuccess {
-                    val tokens = it.toTokens()
-
-                    if (tokens != null) {
-                        authRepository.store(tokens)
+                    it.toTokens()?.let { t ->
+                        authRepository.store(t)
                     }
                 }
                 .map {

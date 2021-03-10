@@ -38,8 +38,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit}"
 
     //moshi
-    implementation("com.squareup.moshi:moshi:${versions.moshi}")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}")
+    implementation "com.squareup.moshi:moshi:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 
     //others
     implementation "com.google.android.material:material:${versions.material}"
