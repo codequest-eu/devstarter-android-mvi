@@ -34,7 +34,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${versions.logIntercept}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.loggingInterceptor}"
     implementation "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit}"
 
     //moshi
