@@ -16,14 +16,18 @@ class RegisterFragment : BaseFragment<RegisterViewState, RegisterViewEvent, Regi
     private lateinit var registerView: RegisterMviView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        registerView = RegisterMviView(inflater, container, presenter::acceptIntent)
+        registerView = RegisterMviView(inflater, container, ::acceptIntent)
         return registerView.rootView
     }
 
-    override fun handleEvent(viewEvent: RegisterViewEvent) {
-        when(viewEvent) {
-            is RegisterViewEvent.GoBack -> navigation.navigateBack()
+    fun acceptIntent(intent: RegisterIntent) {
+        when(intent) {
+            is RegisterIntent.GoBack -> navigation.navigateBack()
+            else -> presenter.acceptIntent(intent)
         }
+    }
+
+    override fun handleEvent(viewEvent: RegisterViewEvent) {
     }
 
     override fun render(viewState: RegisterViewState) {
