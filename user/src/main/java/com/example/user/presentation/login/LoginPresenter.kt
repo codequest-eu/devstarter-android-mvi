@@ -2,14 +2,14 @@ package com.example.user.presentation.login
 
 import androidx.hilt.lifecycle.ViewModelInject
 import com.example.base.presentation.BasePresenter
-import com.example.user.data.UserRepository
 import com.example.user.presentation.login.LoginViewState.PartialState.LoggedInState
 import com.example.user.presentation.login.LoginViewState.PartialState.WelcomeState
+import com.example.user.usecase.GetUserUseCase
 import io.reactivex.rxjava3.core.Flowable
 
 internal class LoginPresenter @ViewModelInject constructor(
         initialState: LoginViewState,
-        private val exampleUserRepository: UserRepository
+        private val getUserUseCase: GetUserUseCase
 ) : BasePresenter<LoginViewState, LoginViewState.PartialState, LoginIntent, LoginViewEvent>(initialState) {
 
     override fun reduceViewState(previousState: LoginViewState, partialState: LoginViewState.PartialState): LoginViewState =
@@ -45,8 +45,8 @@ internal class LoginPresenter @ViewModelInject constructor(
             return Flowable.empty()
         }
 
-        return exampleUserRepository
-                .getUser()
+        return getUserUseCase
+                .execute()
                 .map { LoggedInState(it.name) }
                 .toFlowable()
     }

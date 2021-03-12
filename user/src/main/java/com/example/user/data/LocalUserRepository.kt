@@ -5,7 +5,7 @@ import com.example.user.model.User
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class LocalUserRepository @Inject constructor() : UserRepository {
+internal class LocalUserRepository @Inject constructor() : UserRepository {
     override fun getUser(): Single<User> {
         return Single
                 .just(User(LOCAL_USER_NAME))
