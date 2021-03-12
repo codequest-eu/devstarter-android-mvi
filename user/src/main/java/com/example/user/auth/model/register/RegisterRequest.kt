@@ -10,11 +10,14 @@ data class RegisterRequest(
     companion object {
         fun make(username: String, password: String): RegisterRequest {
             return RegisterRequest(
-                    data = Data(
-                            attributes = mapOf(ATTRIBUTE_EMAIL
-                                    to username, ATTRIBUTE_PASSWORD to password),
-                            type = TYPE_ACCOUNTS
-                    )
+                data = Data(
+                    attributes = mapOf(
+                        ATTRIBUTE_EMAIL
+                            to username,
+                        ATTRIBUTE_PASSWORD to password
+                    ),
+                    type = TYPE_ACCOUNTS
+                )
             )
         }
 

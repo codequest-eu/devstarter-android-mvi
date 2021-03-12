@@ -1,10 +1,6 @@
 package com.example.user.presentation.register
 
-import com.example.user.auth.usecase.RegisterUseCase
-import io.reactivex.rxjava3.core.Single
-import org.junit.Before
-
-//internal class RegisterUseCaseTd: RegisterUseCase {
+// internal class RegisterUseCaseTd: RegisterUseCase {
 //
 //    var success = true
 //
@@ -15,9 +11,9 @@ import org.junit.Before
 //            Single.just(RegisterUseCase.Result.Failure)
 //        }
 //    }
-//}
+// }
 //
-//internal class RegisterPresenterTest {
+// internal class RegisterPresenterTest {
 //
 //    lateinit var testSubject: RegisterPresenter
 //
@@ -25,4 +21,4 @@ import org.junit.Before
 //    fun setup() {
 //        testSubject = RegisterPresenter(RegisterViewState(), )
 //    }
-//}
+// }

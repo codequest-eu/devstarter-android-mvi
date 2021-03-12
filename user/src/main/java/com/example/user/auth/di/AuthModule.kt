@@ -5,7 +5,11 @@ import com.example.base.lib.PreferencesModule
 import com.example.base.network.BaseRetrofitFactory
 import com.example.base.network.NetworkModule
 import com.example.user.auth.Consts
-import com.example.user.auth.data.*
+import com.example.user.auth.data.AuthRepository
+import com.example.user.auth.data.AuthRepositoryImpl
+import com.example.user.auth.data.RefreshTokenApi
+import com.example.user.auth.data.SessionApi
+import com.example.user.auth.data.UserAuthenticator
 import com.example.user.auth.usecase.LoginUseCaseImpl
 import com.example.user.auth.usecase.LoginUserCase
 import com.example.user.auth.usecase.RegisterUseCase
@@ -27,14 +31,14 @@ internal class AuthModule {
 
     @Provides
     fun provideRefreshTokenApi(
-            factory: AuthRetrofitFactory
+        factory: AuthRetrofitFactory
     ): RefreshTokenApi {
         return factory.create(NetworkModule.BACKEND_URL, RefreshTokenApi::class.java)
     }
 
     @Provides
     fun authRepository(
-            @Named(PreferencesModule.ENCRYPTED_PREFERENCES_NAME) encryptedPrefs: SharedPreferences
+        @Named(PreferencesModule.ENCRYPTED_PREFERENCES_NAME) encryptedPrefs: SharedPreferences
     ): AuthRepository {
         return AuthRepositoryImpl(encryptedPrefs)
     }
@@ -48,8 +52,8 @@ internal class AuthModule {
             if (accessToken != null) {
                 val builder = chain.request().newBuilder()
                 val request = builder
-                        .header(Consts.AUTHORIZATION_HEADER_KEY, Consts.AUTHORIZATION_HEADER_VALUE.format(accessToken))
-                        .build()
+                    .header(Consts.AUTHORIZATION_HEADER_KEY, Consts.AUTHORIZATION_HEADER_VALUE.format(accessToken))
+                    .build()
 
                 chain.proceed(request)
             } else {
@@ -60,9 +64,9 @@ internal class AuthModule {
 
     @Provides
     fun authOkHttpClient(
-            @Named(AUTH_INTERCEPTOR_NAME) authInterceptor: Interceptor,
-            authenticator: Authenticator,
-            baseRetrofitFactory: BaseRetrofitFactory
+        @Named(AUTH_INTERCEPTOR_NAME) authInterceptor: Interceptor,
+        authenticator: Authenticator,
+        baseRetrofitFactory: BaseRetrofitFactory
     ): AuthRetrofitFactory {
         val retrofitFactory = baseRetrofitFactory.buildUpon {
             addNetworkInterceptor(authInterceptor)
@@ -74,10 +78,10 @@ internal class AuthModule {
 
     @Provides
     fun provideSessionApi(
-            factory: BaseRetrofitFactory
+        factory: BaseRetrofitFactory
     ): SessionApi {
         return factory
-                .create(NetworkModule.BACKEND_URL, SessionApi::class.java)
+            .create(NetworkModule.BACKEND_URL, SessionApi::class.java)
     }
 
     @Provides

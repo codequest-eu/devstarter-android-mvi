@@ -21,7 +21,7 @@ class RegisterFragment : BaseFragment<RegisterViewState, RegisterViewEvent, Regi
     }
 
     fun acceptIntent(intent: RegisterIntent) {
-        when(intent) {
+        when (intent) {
             is RegisterIntent.GoBack -> navigation.navigateBack()
             else -> presenter.acceptIntent(intent)
         }

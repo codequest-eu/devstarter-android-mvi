@@ -7,10 +7,9 @@ import okhttp3.Response
 import okhttp3.Route
 import javax.inject.Inject
 
-
 internal class UserAuthenticator @Inject constructor(
-        private val refreshTokenApi: RefreshTokenApi,
-        private val authRepository: AuthRepository
+    private val refreshTokenApi: RefreshTokenApi,
+    private val authRepository: AuthRepository
 ) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         try {
@@ -28,10 +27,9 @@ internal class UserAuthenticator @Inject constructor(
         }
 
         return response
-                .request
-                .newBuilder()
-                .header(Consts.AUTHORIZATION_HEADER_KEY, Consts.AUTHORIZATION_HEADER_VALUE.format(authRepository.load()?.accessToken))
-                .build()
-
+            .request
+            .newBuilder()
+            .header(Consts.AUTHORIZATION_HEADER_KEY, Consts.AUTHORIZATION_HEADER_VALUE.format(authRepository.load()?.accessToken))
+            .build()
     }
 }

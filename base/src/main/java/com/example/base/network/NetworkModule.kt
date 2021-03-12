@@ -19,8 +19,8 @@ class NetworkModule {
     fun contentTypeInterceptor(): Interceptor {
         return Interceptor { chain ->
             val request = chain.request().newBuilder()
-                    .header("Content-Type", "application/vnd.api+json")
-                    .build()
+                .header("Content-Type", "application/vnd.api+json")
+                .build()
 
             chain.proceed(request)
         }
@@ -41,19 +41,19 @@ class NetworkModule {
     @Provides
     @Singleton
     fun baseOkHttpClient(
-            @Named(CONTENTTYPE_INTERCEPTOR_NAME) contentTypeInterceptor: Interceptor,
-            @Named(LOGGING_INTERCEPTOR_NAME) loggingInterceptor: Interceptor
+        @Named(CONTENTTYPE_INTERCEPTOR_NAME) contentTypeInterceptor: Interceptor,
+        @Named(LOGGING_INTERCEPTOR_NAME) loggingInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addNetworkInterceptor(contentTypeInterceptor)
             addNetworkInterceptor(loggingInterceptor)
         }
-                .build()
+            .build()
     }
 
     @Provides
     fun provideBaseRetrofitFactory(
-            okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient
     ): BaseRetrofitFactory {
         return BaseRetrofitFactory(okHttpClient)
     }

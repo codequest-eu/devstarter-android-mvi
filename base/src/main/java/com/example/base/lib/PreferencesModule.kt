@@ -12,7 +12,6 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 class PreferencesModule {
@@ -22,15 +21,15 @@ class PreferencesModule {
     @Named(ENCRYPTED_PREFERENCES_NAME)
     fun provideEncryptedPreferences(@ApplicationContext context: Context): SharedPreferences {
         val mainKey = MasterKey.Builder(context)
-                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                .build()
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
 
         return EncryptedSharedPreferences.create(
-                context,
-                CRYPTO_FILENAME,
-                mainKey,
-                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            context,
+            CRYPTO_FILENAME,
+            mainKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
 

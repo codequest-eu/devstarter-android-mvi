@@ -8,8 +8,8 @@ import javax.inject.Inject
 internal class LocalUserRepository @Inject constructor() : UserRepository {
     override fun getUser(): Single<User> {
         return Single
-                .just(User(LOCAL_USER_NAME))
-                .subscribeOn(SchedulersFactory.io)
+            .just(User(LOCAL_USER_NAME))
+            .subscribeOn(SchedulersFactory.io)
     }
 
     companion object {

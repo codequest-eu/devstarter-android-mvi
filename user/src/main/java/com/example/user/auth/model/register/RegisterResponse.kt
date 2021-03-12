@@ -6,8 +6,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 internal data class RegisterResponse(
-        val `data`: Data,
-        val included: List<Data>
+    val `data`: Data,
+    val included: List<Data>
 )
 
 private const val ATTRIBUTE_ACCESS_TOKEN = "access_token"

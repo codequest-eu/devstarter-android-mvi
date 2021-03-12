@@ -4,6 +4,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 internal data class Tokens(
-        val accessToken: String,
-        val refreshToken: String
+    val accessToken: String,
+    val refreshToken: String
 )

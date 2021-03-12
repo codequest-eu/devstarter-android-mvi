@@ -10,10 +10,10 @@ interface GetUserUseCase {
 }
 
 internal class GetUseUseCaseImpl @Inject constructor(
-        private val userRepository: UserRepository
+    private val userRepository: UserRepository
 ) : GetUserUseCase {
     override fun execute(): Single<User> {
         return userRepository
-                .getUser()
+            .getUser()
     }
 }
