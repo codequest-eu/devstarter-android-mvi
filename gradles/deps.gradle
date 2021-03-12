@@ -15,6 +15,9 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-reactivestreams:${versions.lifecycle}"
 
+    //Security
+    implementation "androidx.security:security-crypto:1.1.0-alpha03"
+
     //Hilt
     implementation "com.google.dagger:hilt-android:${versions.hilt}"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:${versions.hiltx}"
@@ -30,6 +33,13 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.loggingInterceptor}"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit}"
+
+    //moshi
+    implementation "com.squareup.moshi:moshi:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 
     //others
     implementation "com.google.android.material:material:${versions.material}"

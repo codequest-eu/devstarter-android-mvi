@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@+id/home_fragment" />
+            app:destination="@+id/home_nav_graph">
+            <argument
+                android:name="helloText"
+                app:argType="string" />
+        </action>
         <action
             android:id="@+id/action_login_fragment_to_register_fragment"
             app:destination="@id/register_fragment" />

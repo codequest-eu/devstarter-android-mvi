@@ -36,11 +36,11 @@ internal class LoginMviView(
 
     private fun renderButtonsVisibility(viewState: LoginViewState) {
         if (viewState.isLoggedIn) {
-            binding.loginButton.visibility = View.GONE
+            binding.loginButton.visibility = View.INVISIBLE
             binding.logoutButton.visibility = View.VISIBLE
         } else {
             binding.loginButton.visibility = View.VISIBLE
-            binding.logoutButton.visibility = View.GONE
+            binding.logoutButton.visibility = View.INVISIBLE
         }
     }
 }
