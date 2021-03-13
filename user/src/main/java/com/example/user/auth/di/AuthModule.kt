@@ -10,6 +10,7 @@ import com.example.user.auth.data.AuthRepositoryImpl
 import com.example.user.auth.data.RefreshTokenApi
 import com.example.user.auth.data.SessionApi
 import com.example.user.auth.data.UserAuthenticator
+import com.example.user.auth.model.register.RegisterRequestDto
 import com.example.user.auth.usecase.LoginUseCaseImpl
 import com.example.user.auth.usecase.LoginUserCase
 import com.example.user.auth.usecase.RegisterUseCase
@@ -18,6 +19,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.ElementsIntoSet
+import moe.banana.jsonapi2.Resource
 import okhttp3.Authenticator
 import okhttp3.Interceptor
 import javax.inject.Named
@@ -89,6 +92,14 @@ internal class AuthModule {
 
     @Provides
     fun provideRegisterUseCase(impl: RegisterUseCaseImpl): RegisterUseCase = impl
+
+    @Provides
+    @ElementsIntoSet
+    fun provideJsonApiResources(): MutableSet<Class<out Resource>> {
+        return mutableSetOf(
+                RegisterRequestDto::class.java
+        )
+    }
 
     companion object {
         private const val AUTH_INTERCEPTOR_NAME = "AUTH_INTERCEPTOR_NAME"
