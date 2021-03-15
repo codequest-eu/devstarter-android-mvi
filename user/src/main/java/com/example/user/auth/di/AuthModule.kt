@@ -10,7 +10,10 @@ import com.example.user.auth.data.AuthRepositoryImpl
 import com.example.user.auth.data.RefreshTokenApi
 import com.example.user.auth.data.SessionApi
 import com.example.user.auth.data.UserAuthenticator
-import com.example.user.auth.model.register.RegisterRequestDto
+import com.example.user.auth.data.dto.AccountDto
+import com.example.user.auth.data.dto.RegisterRequestDto
+import com.example.user.auth.data.dto.SessionDto
+import com.example.user.auth.data.dto.UserDto
 import com.example.user.auth.usecase.LoginUseCaseImpl
 import com.example.user.auth.usecase.LoginUserCase
 import com.example.user.auth.usecase.RegisterUseCase
@@ -97,7 +100,10 @@ internal class AuthModule {
     @ElementsIntoSet
     fun provideJsonApiResources(): MutableSet<Class<out Resource>> {
         return mutableSetOf(
-                RegisterRequestDto::class.java
+                RegisterRequestDto::class.java,
+                AccountDto::class.java,
+                UserDto::class.java,
+                SessionDto::class.java
         )
     }
 

@@ -1,10 +1,11 @@
 package com.example.user.auth.usecase
 
+import android.util.Log
 import com.example.base.utils.SchedulersFactory
+import com.example.user.auth.Consts
 import com.example.user.auth.data.AuthRepository
 import com.example.user.auth.data.SessionApi
-import com.example.user.auth.model.register.RegisterRequestDto
-import com.example.user.auth.model.register.toTokens
+import com.example.user.auth.data.dto.RegisterRequestDto
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ internal class RegisterUseCaseImpl @Inject constructor(
             .register(RegisterRequestDto(username, password))
             .subscribeOn(SchedulersFactory.io)
             .doOnSuccess {
-                it.toTokens()?.let { t ->
+                it.getTokens().let { t ->
                     authRepository.store(t)
                 }
             }
@@ -34,6 +35,7 @@ internal class RegisterUseCaseImpl @Inject constructor(
                 RegisterUseCase.Result.Success as RegisterUseCase.Result
             }
             .onErrorReturn {
+                Log.e(Consts.TAG, "RegisterUseCase.execute exception $it")
                 RegisterUseCase.Result.Failure
             }
     }

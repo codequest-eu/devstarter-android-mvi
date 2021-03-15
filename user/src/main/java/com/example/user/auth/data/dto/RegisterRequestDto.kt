@@ -1,4 +1,4 @@
-package com.example.user.auth.model.register
+package com.example.user.auth.data.dto
 
 import moe.banana.jsonapi2.JsonApi
 import moe.banana.jsonapi2.Resource
