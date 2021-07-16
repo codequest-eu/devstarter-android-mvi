@@ -2,7 +2,7 @@ dependencies {
     //region test dependencies
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "org.mockito:mockito-inline:${versions.mockitoInline}"
-    testImplementation "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:${versions.mockitoKotlin}"
     testImplementation "androidx.arch.core:core-testing:${versions.archCoreTest}"
     testImplementation "org.assertj:assertj-core:${versions.assertj}"
     //endregion
