@@ -1,13 +1,15 @@
 package com.example.user.presentation.login
 
-import androidx.hilt.lifecycle.ViewModelInject
 import com.example.base.presentation.BasePresenter
 import com.example.user.presentation.login.LoginViewState.PartialState.LoggedInState
 import com.example.user.presentation.login.LoginViewState.PartialState.WelcomeState
 import com.example.user.usecase.GetUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Flowable
+import javax.inject.Inject
 
-internal class LoginPresenter @ViewModelInject constructor(
+@HiltViewModel
+internal class LoginPresenter @Inject constructor(
     initialState: LoginViewState,
     private val getUserUseCase: GetUserUseCase
 ) : BasePresenter<LoginViewState, LoginViewState.PartialState, LoginIntent, LoginViewEvent>(initialState) {

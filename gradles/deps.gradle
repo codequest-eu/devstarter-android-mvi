@@ -5,7 +5,7 @@ dependencies {
 
     implementation "androidx.fragment:fragment:${versions.fragment}"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
     implementation "androidx.vectordrawable:vectordrawable:${versions.vector}"
     implementation "androidx.multidex:multidex:${versions.multidex}"
@@ -13,14 +13,13 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.lifecycle}"
 
     //Security
     implementation "androidx.security:security-crypto:1.1.0-alpha03"
 
     //Hilt
     implementation "com.google.dagger:hilt-android:${versions.hilt}"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:${versions.hiltx}"
     kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
     kapt "androidx.hilt:hilt-compiler:${versions.hiltx}"
 
@@ -47,6 +46,5 @@ dependencies {
 
     //others
     implementation "com.google.android.material:material:${versions.material}"
-    implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
     implementation "com.github.bumptech.glide:glide:${versions.glide}"
 }

@@ -38,12 +38,11 @@ android {
 
 apply from: "$rootProject.projectDir/gradles/deps.gradle"
 apply from: "$rootProject.projectDir/gradles/deps-test.gradle"
-apply plugin: 'kotlin-android'
 
 dependencies {
-    implementation project(path: ':base')
-    implementation project(path: ':home')
-    implementation project(path: ':user')
+    implementation project(':base')
+    implementation project(':home')
+    implementation project(':user')
 
     //region implementation dependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])

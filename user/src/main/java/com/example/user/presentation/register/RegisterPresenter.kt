@@ -1,11 +1,13 @@
 package com.example.user.presentation.register
 
-import androidx.hilt.lifecycle.ViewModelInject
 import com.example.base.presentation.BasePresenter
 import com.example.user.auth.usecase.RegisterUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Flowable
+import javax.inject.Inject
 
-class RegisterPresenter @ViewModelInject constructor(
+@HiltViewModel
+class RegisterPresenter @Inject constructor(
     initialState: RegisterViewState,
     private val registerUserCase: RegisterUseCase
 ) : BasePresenter<RegisterViewState, RegisterViewState.PartialState, RegisterIntent, RegisterViewEvent>(initialState) {
