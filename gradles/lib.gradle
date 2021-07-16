@@ -3,7 +3,6 @@ apply from: "$rootProject.projectDir/gradles/plugs.gradle"
 
 android {
     compileSdkVersion config.compileSdk
-    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
         minSdkVersion config.minSdk
