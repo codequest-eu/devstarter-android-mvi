@@ -1,10 +1,13 @@
 package com.example.base.network
 
 import com.example.base.BuildConfig
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import moe.banana.jsonapi2.Resource
+import moe.banana.jsonapi2.ResourceAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -52,15 +55,35 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
+    fun provideMoshi(clazzes: MutableSet<Class<out Resource>>): Moshi {
+
+        val builder = ResourceAdapterFactory
+                .builder()
+
+        clazzes.forEach {
+            builder.add(it)
+        }
+
+        return Moshi
+                .Builder()
+                .add(builder.build())
+                .build()
+    }
+
+    @Provides
     fun provideBaseRetrofitFactory(
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
+        moshi: Moshi
     ): BaseRetrofitFactory {
-        return BaseRetrofitFactory(okHttpClient)
+        return BaseRetrofitFactory(okHttpClient, moshi)
     }
 
     companion object {
         private const val CONTENTTYPE_INTERCEPTOR_NAME = "CONTENTTYPE_INTERCEPTOR_NAME"
         private const val LOGGING_INTERCEPTOR_NAME = "LOGGING_INTERCEPTOR_NAME"
+
+        const val JSONAPI_ADAPTER_SET = "JSONAPI_ADAPTER_SET"
 
         const val BACKEND_URL = "https://development-api.devstarter.codequest.dev/"
     }

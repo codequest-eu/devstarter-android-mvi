@@ -41,6 +41,10 @@ dependencies {
     implementation "com.squareup.moshi:moshi:${versions.moshi}"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 
+    // jsonapi
+    implementation "moe.banana:moshi-jsonapi:${versions.jsonapi}"
+    implementation "moe.banana:moshi-jsonapi-retrofit-converter:${versions.jsonapi}"
+
     //others
     implementation "com.google.android.material:material:${versions.material}"
     implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
